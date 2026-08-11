@@ -9,10 +9,12 @@ type Class = "No_Flood" | "Low" | "Moderate" | "High" | "Very_High";
 
 export function RiskResult({
   place,
+  coords,
   result,
   onReset,
 }: {
   place: string;
+  coords?: { lat: number; lng: number };
   result: RiskLookupResult | null;
   onReset: () => void;
 }) {
@@ -70,6 +72,11 @@ export function RiskResult({
           <h1 className="font-serif text-4xl sm:text-5xl mt-2">
             {RISK_LABEL[idx]}
           </h1>
+          {coords && (
+            <p className="mt-2 text-xs text-[var(--color-ink-mute)] font-mono tracking-wide">
+              {coords.lat.toFixed(5)}° N, {coords.lng.toFixed(5)}° E
+            </p>
+          )}
         </motion.header>
 
         <motion.div

@@ -50,3 +50,28 @@ export function geocode(query: string, limit = 6): Array<Entry & { score: number
     .slice(0, limit);
   return ranked.map(({ entry, score }) => ({ ...entry, score }));
 }
+
+/**
+ * Reverse-geocode: find the gazetteer entry nearest to (lat, lng).
+ * Great-circle distance via a small-angle approximation — fine at the
+ * ~10 km scale of Ibadan metropolis, and much faster than haversine.
+ * Returns null if the gazetteer is empty.
+ */
+export function nearestPlace(
+  lat: number,
+  lng: number,
+): (Entry & { distance_km: number }) | null {
+  if (ENTRIES.length === 0) return null;
+  const latRad = (lat * Math.PI) / 180;
+  const kmPerDegLat = 111.132;
+  const kmPerDegLng = 111.32 * Math.cos(latRad);
+  let best: Entry | null = null;
+  let bestSq = Number.POSITIVE_INFINITY;
+  for (const e of ENTRIES) {
+    const dy = (e.lat - lat) * kmPerDegLat;
+    const dx = (e.lng - lng) * kmPerDegLng;
+    const sq = dx * dx + dy * dy;
+    if (sq < bestSq) { bestSq = sq; best = e; }
+  }
+  return best ? { ...best, distance_km: Math.sqrt(bestSq) } : null;
+}

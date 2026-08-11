@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { SearchBar } from "@/components/SearchBar";
 import { RiskResult } from "@/components/RiskResult";
 import { RISK_COLORS, RISK_LABEL } from "@/lib/theme";
+import { nearestPlace } from "@/lib/gazetteer";
 import type { RiskLookupResult } from "@/lib/risk-lookup";
 
 type Selected =
@@ -54,7 +55,19 @@ export default function HomeClient() {
       const la = Number(lat);
       const lo = Number(lng);
       if (Number.isFinite(la) && Number.isFinite(lo)) {
-        runLookup({ name: "Selected point", lat: la, lng: lo });
+        // Reverse-geocode: always attach the nearest known place so
+        // the results page tells the user WHERE they clicked in
+        // human-readable terms. Ibadan metropolis is ~12 km across —
+        // any click within the coverage area is by definition close
+        // to at least one of the ~40 gazetteer entries. Only fall
+        // back to "Selected point" if the coord is far from all
+        // known places (i.e. probably outside coverage).
+        const near = nearestPlace(la, lo);
+        const name =
+          near && near.distance_km < 8
+            ? `Near ${near.name}`
+            : "Selected point";
+        runLookup({ name, lat: la, lng: lo });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,6 +113,7 @@ export default function HomeClient() {
           <div className="w-full">
             <RiskResult
               place={selected.name}
+              coords={{ lat: selected.lat, lng: selected.lng }}
               result={result}
               onReset={reset}
             />
