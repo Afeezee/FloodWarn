@@ -6,12 +6,22 @@ import { lookupRisk } from "@/lib/risk-lookup";
 // request; there is no meaningful build-time output to prerender.
 export const dynamic = "force-dynamic";
 
-// Require both parameters as strings first — Zod's `coerce.number()`
-// happily turns `null` into 0, which would silently be a valid (but
-// wrong) lat/lng. Once we have real strings, coerce and range-check.
+// Require both parameters as non-empty strings first — Zod's
+// `coerce.number()` happily turns `null` into 0, which would silently
+// be a valid (but wrong) lat/lng. Once we have a real string, parse
+// with Number.parseFloat and range-check.
+const coord = (min: number, max: number) =>
+  z
+    .string()
+    .min(1)
+    .transform((s) => Number.parseFloat(s))
+    .refine((n) => Number.isFinite(n) && n >= min && n <= max, {
+      message: `Must be a number in [${min}, ${max}]`,
+    });
+
 const Query = z.object({
-  lat: z.string().min(1).pipe(z.coerce.number().gte(-90).lte(90)),
-  lng: z.string().min(1).pipe(z.coerce.number().gte(-180).lte(180)),
+  lat: coord(-90, 90),
+  lng: coord(-180, 180),
 });
 
 export async function GET(req: NextRequest) {
