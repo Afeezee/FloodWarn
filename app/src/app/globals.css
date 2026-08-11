@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/*
+ * FloodWarn design tokens
+ * -----------------------
+ * A warm, calm system: cream backgrounds; risk expressed on a
+ * cream → terracotta scale rather than red / amber / green so it reads
+ * as "concern" without shouting "danger". Everything picked to feel
+ * closer to a wellbeing app than a hazard dashboard.
+ */
+
+@theme {
+  /* Base surfaces */
+  --color-canvas: #FBF6EC;         /* app background — warm off-white */
+  --color-canvas-elev: #FFFFFF;    /* cards / panels */
+  --color-canvas-dim: #F0E6D2;     /* subtle dividers, hover backgrounds */
+  --color-ink: #2C1E12;            /* primary text — very dark brown */
+  --color-ink-soft: #6B5442;       /* secondary text */
+  --color-ink-mute: #A28A72;       /* muted labels */
+  --color-hairline: #E4D6BE;       /* borders */
+
+  /* Risk scale — cream → terracotta.
+   * Deliberately warm; not the red/amber/green traffic-light gradient.
+   * The label "very high" is a deep clay, not a fire-engine red. */
+  --color-risk-0: #F0E1BF;   /* No_Flood — light cream */
+  --color-risk-1: #E4BC85;   /* Low — soft sand */
+  --color-risk-2: #D48A50;   /* Moderate — warm ochre */
+  --color-risk-3: #B15D34;   /* High — burnt sienna */
+  --color-risk-4: #7A3820;   /* Very_High — deep clay */
+
+  /* Accents */
+  --color-accent: #385A54;        /* forest teal — reserved for CTAs */
+  --color-accent-soft: #A6BDB6;
+
+  /* Typography */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Radii + shadows tuned soft, not floating-material */
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+
+  --shadow-soft: 0 6px 24px -12px rgba(44, 30, 18, 0.18);
+  --shadow-lift: 0 18px 44px -24px rgba(44, 30, 18, 0.28);
+}
+
+/* Global reset-ish */
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+
+/* Utility class: risk-tinted surfaces */
+.surface-risk-0 { background: var(--color-risk-0); color: var(--color-ink); }
+.surface-risk-1 { background: var(--color-risk-1); color: var(--color-ink); }
+.surface-risk-2 { background: var(--color-risk-2); color: #FFFCF3; }
+.surface-risk-3 { background: var(--color-risk-3); color: #FFFCF3; }
+.surface-risk-4 { background: var(--color-risk-4); color: #FFFCF3; }
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

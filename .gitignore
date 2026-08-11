@@ -1,0 +1,67 @@
+# FloodWarn — root .gitignore
+# --------------------------------------------------------------------
+# Rules of thumb:
+#   - Never commit .env files (secrets); DO commit .env.local.example.
+#   - Never commit anything > 100 MB (GitHub hard limit).
+#   - Anything the ML pipeline can regenerate is ignored, so a fresh
+#     clone stays small; DEPLOY.md documents how to regenerate.
+# --------------------------------------------------------------------
+
+# ---- Secrets ----
+.env
+.env.*
+!.env.local.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- Node / Next.js ----
+node_modules/
+.next/
+.turbo/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.pnp
+.pnp.*
+
+# ---- Vercel ----
+.vercel/
+
+# ---- Big regeneratable data files ----
+# 160 MB and 189 MB respectively — over GitHub's 100 MB per-file limit.
+# Regenerate with:  python ml/10_export_risk_layer.py
+data/processed/risk_layer.csv
+data/processed/risk_layer.geojson
+
+# The 534 KB gzipped map overlay in app/public/ IS committed — it is
+# required at serve time and small enough to check in.
+
+# ---- OS + editor cruft ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+!.vscode/extensions.json
+.idea/
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ---- Local test helpers you might create ad-hoc ----
+scratch/
+tmp/

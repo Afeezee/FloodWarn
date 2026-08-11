@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Maskable: fills the full safe-zone rect; icon centered with padding. -->
+  <rect width="512" height="512" fill="#FBF6EC"/>
+  <g transform="translate(128 152)">
+    <path d="M128 0 C 192 78 224 134 224 176 C 224 230 192 262 128 262 C 64 262 32 230 32 176 C 32 134 64 78 128 0 Z"
+          fill="#B15D34"/>
+    <path d="M128 54 C 170 110 197 148 197 180 C 197 214 170 235 128 235"
+          fill="none" stroke="#F0E1BF" stroke-width="11" stroke-linecap="round"/>
+  </g>
+</svg>

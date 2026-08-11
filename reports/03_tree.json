@@ -1,0 +1,657 @@
+{
+  "features": [
+    "Slope",
+    "Curvature",
+    "Aspect",
+    "TWI",
+    "FA",
+    "Drainage",
+    "Rainfall"
+  ],
+  "params": {
+    "objective": "multi:softprob",
+    "num_class": 5,
+    "eval_metric": "mlogloss",
+    "tree_method": "hist",
+    "max_depth": 8,
+    "learning_rate": 0.05,
+    "subsample": 0.85,
+    "colsample_bytree": 0.85,
+    "reg_lambda": 1.0,
+    "seed": 42,
+    "verbosity": 0
+  },
+  "spatial": {
+    "per_fold": [
+      {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_weighted": 1.0,
+        "confusion": [
+          [
+            3417,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6863,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8090,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            7358,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5093
+          ]
+        ],
+        "report": {
+          "No_Flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 3417.0
+          },
+          "Low": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6863.0
+          },
+          "Moderate": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 8090.0
+          },
+          "High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 7358.0
+          },
+          "Very_High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 5093.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30821.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30821.0
+          }
+        },
+        "fold": 0,
+        "n_test": 30821
+      },
+      {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_weighted": 1.0,
+        "confusion": [
+          [
+            3343,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6757,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7783,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6879,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            4709
+          ]
+        ],
+        "report": {
+          "No_Flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 3343.0
+          },
+          "Low": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6757.0
+          },
+          "Moderate": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 7783.0
+          },
+          "High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6879.0
+          },
+          "Very_High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 4709.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 29471.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 29471.0
+          }
+        },
+        "fold": 1,
+        "n_test": 29471
+      },
+      {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_weighted": 1.0,
+        "confusion": [
+          [
+            3143,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6338,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7610,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            7092,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            4844
+          ]
+        ],
+        "report": {
+          "No_Flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 3143.0
+          },
+          "Low": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6338.0
+          },
+          "Moderate": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 7610.0
+          },
+          "High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 7092.0
+          },
+          "Very_High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 4844.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 29027.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 29027.0
+          }
+        },
+        "fold": 2,
+        "n_test": 29027
+      },
+      {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_weighted": 1.0,
+        "confusion": [
+          [
+            2967,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            5833,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6964,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6191,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            4130
+          ]
+        ],
+        "report": {
+          "No_Flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 2967.0
+          },
+          "Low": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 5833.0
+          },
+          "Moderate": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6964.0
+          },
+          "High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6191.0
+          },
+          "Very_High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 4130.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 26085.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 26085.0
+          }
+        },
+        "fold": 3,
+        "n_test": 26085
+      },
+      {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_weighted": 1.0,
+        "confusion": [
+          [
+            3256,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6461,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7669,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            6931,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            4680
+          ]
+        ],
+        "report": {
+          "No_Flood": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 3256.0
+          },
+          "Low": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6461.0
+          },
+          "Moderate": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 7669.0
+          },
+          "High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 6931.0
+          },
+          "Very_High": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 4680.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 28997.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 28997.0
+          }
+        },
+        "fold": 4,
+        "n_test": 28997
+      }
+    ],
+    "overall_oof": {
+      "accuracy": 1.0,
+      "f1_macro": 1.0,
+      "f1_weighted": 1.0,
+      "confusion": [
+        [
+          16126,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          32252,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          38116,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          34451,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          23456
+        ]
+      ],
+      "report": {
+        "No_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 16126.0
+        },
+        "Low": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 32252.0
+        },
+        "Moderate": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 38116.0
+        },
+        "High": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 34451.0
+        },
+        "Very_High": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 23456.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 144401.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 144401.0
+        }
+      }
+    }
+  },
+  "random": {
+    "accuracy": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "confusion": [
+      [
+        3225,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6451,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7624,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        6890,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        4691
+      ]
+    ],
+    "report": {
+      "No_Flood": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3225.0
+      },
+      "Low": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6451.0
+      },
+      "Moderate": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7624.0
+      },
+      "High": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6890.0
+      },
+      "Very_High": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4691.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 28881.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 28881.0
+      }
+    }
+  },
+  "summary": {
+    "spatial_overall_accuracy": 1.0,
+    "spatial_overall_f1_macro": 1.0,
+    "spatial_overall_f1_weighted": 1.0,
+    "random_accuracy": 1.0,
+    "random_f1_macro": 1.0,
+    "random_f1_weighted": 1.0,
+    "gap_accuracy": 0.0,
+    "gap_f1_macro": 0.0
+  }
+}

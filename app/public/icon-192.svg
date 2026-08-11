@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="42" fill="#FBF6EC"/>
+  <g transform="translate(24 32)">
+    <!-- warm terracotta droplet -->
+    <path d="M72 0 C 108 44 130 76 130 100 C 130 130 108 148 72 148 C 36 148 14 130 14 100 C 14 76 36 44 72 0 Z"
+          fill="#B15D34"/>
+    <!-- inner cream highlight -->
+    <path d="M72 30 C 96 62 112 84 112 102 C 112 122 96 134 72 134"
+          fill="none" stroke="#F0E1BF" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
