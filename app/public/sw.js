@@ -2,33 +2,37 @@
  * FloodWarn service worker.
  *
  * Design intent:
- *   - Precache the app shell so a return visit works instantly (and
- *     offline for the shell + gazetteer).
- *   - Cache /api/risk responses per-URL. The last-checked area works
- *     offline because its /api/risk?lat=&lng= response is in the cache.
- *   - The risk overlay (risk_layer_min.geojson.gz) is aggressively
- *     cached because it changes only when the model is retrained.
- *   - Never cache /api/geocode error responses; DO cache successful
- *     ones for a while.
+ *   - Precache the *static* app assets (manifest, icons, risk overlay)
+ *     so a return visit works instantly and the last-checked area works
+ *     offline. Do NOT cache-first the HTML routes — HTML embeds
+ *     hashed JS-chunk references, so a cached HTML pinned to an old
+ *     bundle strands users on a broken deploy. HTML uses
+ *     stale-while-revalidate instead.
+ *   - Cache /api/risk responses per-URL: the last-checked area works
+ *     offline. Network-first with cache fallback.
+ *   - Never cache /api/geocode error responses; cache successes with
+ *     stale-while-revalidate.
  *
- * Cache-first for static, network-first with cache fallback for the
- * risk API.
+ * Bump CACHE_VERSION on any strategy change so old SW installs
+ * invalidate their caches on the next activate.
  */
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const SHELL_CACHE = `floodwarn-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `floodwarn-runtime-${CACHE_VERSION}`;
 
+// Precache only true static assets, NOT HTML routes.
 const SHELL_ASSETS = [
-  "/",
-  "/how-it-works",
-  "/map",
   "/manifest.webmanifest",
   "/icon-192.svg",
   "/icon-512.svg",
   "/icon-maskable.svg",
   "/risk_layer_min.geojson.gz",
 ];
+
+// HTML routes — cached but always revalidated in the background on
+// visit so a new deploy propagates in one page-view.
+const HTML_ROUTES = new Set(["/", "/how-it-works", "/map"]);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -73,12 +77,19 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(staleWhileRevalidate(req, RUNTIME_CACHE));
     return;
   }
-  // Shell assets — cache-first.
+  // HTML routes — stale-while-revalidate so a new deploy shows up on
+  // the next visit rather than being pinned by a cached HTML that
+  // references old JS chunks.
+  if (HTML_ROUTES.has(url.pathname)) {
+    event.respondWith(staleWhileRevalidate(req, RUNTIME_CACHE));
+    return;
+  }
+  // Precached static shell assets — cache-first.
   if (SHELL_ASSETS.some((a) => url.pathname === a)) {
     event.respondWith(cacheFirst(req, SHELL_CACHE));
     return;
   }
-  // Everything else (Next chunk assets etc.) — cache on success.
+  // Everything else (Next hashed chunks, images, CSS) — SWR.
   event.respondWith(staleWhileRevalidate(req, RUNTIME_CACHE));
 });
 
